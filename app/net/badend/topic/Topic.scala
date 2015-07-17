@@ -1,7 +1,6 @@
 package net.badend.topic
 
 import com.fasterxml.jackson.core.JsonParser.Feature._
-import com.piki.ds.PikiHdfs
 import org.apache.spark.deploy.SparkHadoopUtil
 import org.apache.spark.{SparkContext, SparkConf}
 import org.json4s.jackson.JsonMethods
@@ -90,7 +89,7 @@ object Topic {
     <value>kr-data-h1:8035</value>
   </property>
  */
-    sc.hadoopConfiguration.addResource(PikiHdfs.pikihdfs.conf)
+
     sc.hadoopConfiguration.set("fs.defaultFS", "hdfs://kr-data-h1:9000")
     sc.hadoopConfiguration.set("yarn.resourcemanager.resource-tracker.address", "kr-data-h1:8025")
     sc.hadoopConfiguration.set("yarn.resourcemanager.scheduler.address", "kr-data-h1:8030")
