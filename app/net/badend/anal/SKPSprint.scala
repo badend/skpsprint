@@ -86,7 +86,7 @@ object SKPSprint {
 
 
 
-    userPur.map(x=>{
+    userPur.take(100).map(x=>{
       val user = x._1
       val purInfo = x._2
 
@@ -97,6 +97,7 @@ object SKPSprint {
         val weight = bm25(p("TOT_USE_AMOUT").asInstanceOf[String].toInt, glssPur(glssid).size, userPur.size, purInfo.size.toDouble/65.54216590114436D)
 
         print(item("TITLE"))
+        print("|||||||")
 
       })
       println()
