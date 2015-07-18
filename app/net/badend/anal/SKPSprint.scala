@@ -157,6 +157,7 @@ object SKPSprint {
           //println(matchingsum, recency, googleCntScore, revScore, viewScore, item("TITLE"))
           features.synchronized {
             features.write(s"${x._1},${key},${matchingsum},${recency},${googleCntScore},${revScore},${viewScore}")
+            features.newLine()
           }
           Some(matchingsum*6 + recency*2 + googleCntScore + revScore*2 + viewScore*2, t._1)
         }
