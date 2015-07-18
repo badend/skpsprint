@@ -2,6 +2,7 @@ package net.badend.anal
 
 import java.nio.charset.Charset
 import java.nio.file.{StandardOpenOption, Paths, Files}
+import java.util.zip.GZIPOutputStream
 
 import com.twitter.penguin.korean.tokenizer.KoreanTokenizer.KoreanToken
 import com.twitter.penguin.korean.util.KoreanPos._
@@ -25,7 +26,7 @@ object SKPSprint {
   val log = LoggerFactory.getLogger(getClass)
 
   def main(args: Array[String]) {
-    val features = Files.newBufferedWriter(Paths.get(args(0)), Charset.forName("UTF8"), StandardOpenOption.CREATE)
+    val features = new GZIPOutputStream(Files.newOutputStream(Paths.get(args(0)), StandardOpenOption.CREATE))
 
     val filterOut = Seq(
 
@@ -156,8 +157,8 @@ object SKPSprint {
           val viewScore = 1/(1+math.exp(views * -0.013 + 3 ))
           //println(matchingsum, recency, googleCntScore, revScore, viewScore, item("TITLE"))
           features.synchronized {
-            features.write(s"${x._1},${key},${matchingsum},${recency},${googleCntScore},${revScore},${viewScore}")
-            features.newLine()
+            features.write(s"${x._1},${key},${matchingsum},${recency},${googleCntScore},${revScore},${viewScore}\n".getBytes("UTF8"))
+
           }
           Some(matchingsum*6 + recency*2 + googleCntScore + revScore*2 + viewScore*2, t._1)
         }
