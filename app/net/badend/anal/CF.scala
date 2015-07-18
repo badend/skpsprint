@@ -12,7 +12,7 @@ import scala.collection.immutable.ListMap
  */
 object CF {
   def main(args:Array[String]) = {
-    val fw = Files.newBufferedWriter(Paths.get("/Users/jihoonkang/git/sprint2/conf/cf1.csv"), Charset.forName("UTF8"), StandardOpenOption.CREATE)
+    val fw = Files.newBufferedWriter(Paths.get(args(0)), Charset.forName("UTF8"), StandardOpenOption.CREATE)
     val callback = (item_id: Int, neighbors: ListMap[Int, Double]) => {
       println("item_id", item_id, "neighbors", neighbors)
       fw.synchronized {
@@ -23,7 +23,7 @@ object CF {
     }
 
     val proc = new ParallelCF(callback)
-    scala.io.Source.fromFile("/Users/jihoonkang/git/sprint2/conf/round2_purchaseRecord.tsv").getLines().foreach(x=>{
+    scala.io.Source.fromFile(getClass.getResource("/round2_purchaseRecord.tsv").toURI).getLines().foreach(x=>{
       val s = x.split("\t")
       proc.import_rating(scala.util.hashing.MurmurHash3.stringHash(s(2)), scala.util.hashing.MurmurHash3.stringHash(s(0)))
     })

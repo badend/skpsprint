@@ -24,7 +24,7 @@ object SKPSprint {
   val log = LoggerFactory.getLogger(getClass)
 
   def main(args: Array[String]) {
-    val features = Files.newBufferedWriter(Paths.get("/Users/jihoonkang/git/features.csv"), Charset.forName("UTF8"), StandardOpenOption.CREATE)
+    val features = Files.newBufferedWriter(Paths.get(args(0)), Charset.forName("UTF8"), StandardOpenOption.CREATE)
 
     val filterOut = Seq(
 
@@ -113,7 +113,7 @@ object SKPSprint {
     }
 
 
-    val output = Files.newBufferedWriter(Paths.get("/Users/jihoonkang/git/submit2.csv"), Charset.forName("UTF8"), StandardOpenOption.CREATE)
+    val output = Files.newBufferedWriter(Paths.get(args(1)), Charset.forName("UTF8"), StandardOpenOption.CREATE)
 
 
     userPur.par.map(x => {
