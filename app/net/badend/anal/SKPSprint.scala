@@ -161,7 +161,7 @@ object SKPSprint {
           }
           Some(matchingsum*6 + recency*2 + googleCntScore + revScore*2 + viewScore*2, t._1)
         }
-      }).flatten.filter(x => x != 0).toArray.sortBy(x => x._1 * -1)
+      }).flatten.filter(x => x._1 != 0).toArray.sortBy(x => x._1 * -1)
 
 
       scoresMovie.take(100).foreach(x => {
