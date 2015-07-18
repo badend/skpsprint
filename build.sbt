@@ -15,6 +15,11 @@ aggregate in runMain := true
 
 val sprayV = "1.3.3"
 
+val dl4jver = "0.0.3.3.4.alpha2"
+
+val nd4jver = "0.0.3.5.5.5"
+
+val canovaver = "0.0.0.4"
 
 //Play2WarKeys.servletVersion := "3.0"
 
@@ -70,6 +75,7 @@ libraryDependencies ++= Seq(
 resolvers ++= Seq(
   "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/",
   "Sonatype Releases" at "https://oss.sonatype.org/content/repositories/releases/",
+  "snapshot release" at "https://oss.sonatype.org/content/repositories/snapshots/",
   "Scala Tools Snapshots" at "http://scala-tools.org/repo-snapshots/",
   "spray repo" at "http://repo.spray.io/"
 )
