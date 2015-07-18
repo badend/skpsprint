@@ -11,6 +11,7 @@ import org.joda.time.format.DateTimeFormat
 import org.slf4j.LoggerFactory
 
 import scala.collection.mutable
+import scala.io.Codec
 import scala.util.Try
 
 
@@ -63,7 +64,7 @@ object SKPSprint {
     /**
      * 아이템 아이디와 아이템 정보들 들어있음 원본
      */
-    val items: Map[String, Item] = scala.io.Source.fromFile(getClass.getResource("/round2_itemInfo.tsv").toURI).getLines.map(x => {
+    val items: Map[String, Item] = scala.io.Source.fromFile(getClass.getResource("/round2_itemInfo.tsv").toURI)(Codec.UTF8).getLines.map(x => {
 
       val item = x.split("\t", -1)
 /*
@@ -86,7 +87,7 @@ object SKPSprint {
     class Purchase(val userId:String, val buyDt:DateTime, val glssId:String, val fglassId:String, val totUseAmount:Long)
 
     //구매 이력, 키가 없는 상태
-    val pur = scala.io.Source.fromFile(getClass.getResource("/round2_purchaseRecord.tsv").toURI).getLines.map(x => {
+    val pur = scala.io.Source.fromFile(getClass.getResource("/round2_purchaseRecord.tsv").toURI)(Codec.UTF8).getLines.map(x => {
       val s = x.split("\t", -1)
       (new Purchase(s(0), buyFtFormat.parseDateTime(s(1)),  s(2),  f"${s(2).toLong}%011d", s(3).toLong))
     }).toList
