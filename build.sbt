@@ -68,7 +68,8 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-mllib" % "1.3.1",
   "org.apache.spark" %% "spark-repl" % "1.3.1",
   "org.apache.spark" %% "spark-yarn" % "1.3.1",
-  "com.typesafe.akka" %% "akka-testkit" % "2.3.4" % "test"
+  "com.typesafe.akka" %% "akka-testkit" % "2.3.4" % "test",
+  "xalan" % "serializer" % "2.7.2"
 )
 
 
